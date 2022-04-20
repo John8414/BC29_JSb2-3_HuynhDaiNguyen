@@ -11,17 +11,17 @@
  *   + Tiền lương nhân viên
  */
 
-document.getElementById("tinhLuong").onclick = function () {
-  //lấy thông tin
-  var soNgayLam = document.getElementById("ngayCong").value * 1;
-  var luongNgay = 100000;
-  var currencyFormat = new Intl.NumberFormat("vn-VN");
-  //xử lý
-  var luong = luongNgay * soNgayLam;
-  var tongLuong = "Tổng lương của bạn là: " + currencyFormat.format(luong);
+document.getElementById("tinhLuong").onclick = function() {
+    //lấy thông tin
+    var soNgayLam = document.getElementById("ngayCong").value * 1;
+    var luongNgay = 100000;
+    var currencyFormat = new Intl.NumberFormat("vn-VN");
+    //xử lý
+    var luong = luongNgay * soNgayLam;
+    var tongLuong = "Tổng lương của bạn là: " + currencyFormat.format(luong);
 
-  // show kết quả
-  document.getElementById("footerLuong").innerHTML = tongLuong;
+    // show kết quả
+    document.getElementById("footerLuong").innerHTML = tongLuong;
 };
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -38,19 +38,19 @@ document.getElementById("tinhLuong").onclick = function () {
  *   + giaTri_TB
  */
 
-document.getElementById("tinhTBC").onclick = function () {
-  //lấy thông tin
-  var so1 = document.getElementById("so1").value * 1;
-  var so2 = document.getElementById("so2").value * 1;
-  var so3 = document.getElementById("so3").value * 1;
-  var so4 = document.getElementById("so4").value * 1;
-  var so5 = document.getElementById("so5").value * 1;
+document.getElementById("tinhTBC").onclick = function() {
+    //lấy thông tin
+    var so1 = document.getElementById("so1").value * 1;
+    var so2 = document.getElementById("so2").value * 1;
+    var so3 = document.getElementById("so3").value * 1;
+    var so4 = document.getElementById("so4").value * 1;
+    var so5 = document.getElementById("so5").value * 1;
 
-  //xử lý
-  var tinhTBC = (so1 + so2 + so3 + so4 + so5) / 5;
+    //xử lý
+    var tinhTBC = (so1 + so2 + so3 + so4 + so5) / 5;
 
-  //đầu ra
-  document.getElementById("footerTBC").innerHTML = tinhTBC;
+    //đầu ra
+    document.getElementById("footerTBC").innerHTML = tinhTBC;
 };
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,7 +59,7 @@ document.getElementById("tinhTBC").onclick = function () {
 /**
  * - Đầu vào :
  *   + Giá USD sang VNĐ : 23.500vnđ ;
- *   + Nhập số tiền USD ; giả sử $10
+ *   + Nhập số tiền USD ; 
  *
  * - Xử lý :
  *   + Quy đổi số tiền USD sang VNĐ = Giá USD * 23.500 ;
@@ -68,14 +68,21 @@ document.getElementById("tinhTBC").onclick = function () {
  *   + Giá quy đổi từ USD sang VNĐ ;
  */
 
+document.getElementById("doiTien").onclick = function() {
+    //đàu vào
+    //lệch giá giữa USD và VND luôn thay đổi theo thời gian nên cho tự nhập
+    var giaHienHanh = document.getElementById("giaTri").value * 1;
+    var tienUSD = document.getElementById("nhapUSD").value * 1;
+    var currencyFormat = new Intl.NumberFormat("vn-VN");
 
-var giaUsd = 10;
-var giaVnd = 23500;
-var giaQuyDoi = giaUsd * giaVnd;
+    //xử lý
+    var doiTien = giaHienHanh * tienUSD;
 
-var currentFormat = new Intl.NumberFormat("vn-VN");
-var raTien = "Giá quy đổi từ USD sang VNĐ : " + currentFormat.format(giaQuyDoi);
-console.log(raTien);
+    var tongTien = currencyFormat.format(doiTien);
+
+    //kết quá
+    document.getElementById("footerDoiTien").innerHTML = "Tổng tiền đổi được là: " + tongTien;
+}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -94,13 +101,23 @@ console.log(raTien);
  *
  */
 
-var chieuDai = 15;
-var chieuRong = 10;
-var dienTich = chieuDai * chieuRong;
-var chuVi = (chieuDai + chieuRong) * 2;
+document.getElementById("tinhS-P").onclick = function() {
+    //đầu vào
+    var chieuDai = document.getElementById("chieuDai").value * 1;
+    var chieuRong = document.getElementById("chieuRong").value * 1;
 
-console.log("Diện tích hình chữ nhật là : " + dienTich);
-console.log("Chu vi hình chữ nhật là : " + chuVi);
+    // xử lý
+    var S = chieuDai * chieuRong
+    var P = (chieuDai + chieuRong) * 2
+
+    // đầu ra
+    var result = "";
+    result += "<p> S là: " + S + "</p>";
+    result += "<p> P là: " + P + "</p>";
+
+    document.getElementById("footerS-P").innerHTML = result;
+}
+
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -117,14 +134,18 @@ console.log("Chu vi hình chữ nhật là : " + chuVi);
  *   + Tính tổng ;
  */
 
-var n = 23;
+document.getElementById("tongHaiSo").onclick = function() {
+    //đầu vao
+    var soNguyen = document.getElementById("soNguyen").value * 1;
+    //xử lý
+    var hangChuc = soNguyen / 10;
+    hangChuc = parseInt(hangChuc);
 
-var hangChuc = n / 10;
-hangChuc = parseInt(hangChuc);
+    var hangDonVi = soNguyen % 10;
+    hangDonVi = parseInt(hangDonVi);
 
-var hangDonVi = n % 10;
-hangDonVi = parseInt(hangDonVi);
+    var tongHaiSo = hangChuc + hangDonVi;
 
-var tong = hangChuc + hangDonVi;
-
-console.log("Tổng 2 ký số là : " + tong);
+    // kết quá
+    document.getElementById("footerTongHaiSo").innerHTML = "Tổng hai ký số là: " + tongHaiSo;
+}
